@@ -1,18 +1,22 @@
 package com.soccatech.FootballManagementSystem.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
+@Builder
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "local_user")
 public class LocalUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
     private String password;
-    private String role; // Role can be "ROLE_USER", "ROLE_PLAYER", "ROLE_MANAGER", or "ROLE_ADMIN"
+    @Enumerated(EnumType.STRING)
+    private UserRole role; // Role can be "ROLE_USER", "ROLE_PLAYER", "ROLE_MANAGER", or "ROLE_ADMIN"
 
-    // Constructors, getters, setters, etc.
 }
